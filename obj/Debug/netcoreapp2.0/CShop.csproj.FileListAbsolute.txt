@@ -1,0 +1,11 @@
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.deps.json
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.runtimeconfig.json
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.runtimeconfig.dev.json
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.dll
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.pdb
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.csprojResolveAssemblyReference.cache
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.csproj.CoreCompileInputs.cache
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.AssemblyInfoInputs.cache
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.AssemblyInfo.cs
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.dll
+/Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.pdb

@@ -15,9 +15,9 @@ namespace CShop.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Animals()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "Animals Page.";
 
             return View();
         }
