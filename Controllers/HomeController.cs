@@ -75,11 +75,39 @@ namespace CShop.Controllers
 
             using (var connection = new MySqlConnection(_connectionString))
             {
-                connection.Execute(
-                    "INSERT INTO cart (productId, amount, guid) VALUES (@id, 1, @guid)", new { id, guid }
+                var checkProduct = connection.QuerySingleOrDefault(
+
+                    "SELECT productId FROM cart WHERE productId=@id AND guid=@guid", new { id, guid }
                 );
+
+                if (checkProduct == null)
+                {
+                    connection.Execute(
+
+                        "INSERT INTO cart (productId, amount, guid) VALUES (@id, 1, @guid)", new { id, guid }
+                    );
+                } else {
+                    connection.Execute(
+
+                        "UPDATE cart SET amount=amount+1 WHERE guid=@guid AND productId=@id", new { guid, id}
+                    );
+                }
+                
+
             }
             return RedirectToAction("Animals");
+        }
+        public IActionResult EmptyCart()
+        {
+            var guid = GetGuidCookie();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Execute(
+                    "DELETE FROM cart WHERE guid=@guid ", new { guid }
+                );
+            }
+            return RedirectToAction("Cart");
         }
 
         public string GetGuidCookie()

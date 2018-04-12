@@ -4,7 +4,9 @@
 
 @{
     ViewData["Title"] = "Cart";
+    decimal totalPrice = 0;
 }
+
 <h2>@ViewData["Title"]</h2>
 
  
@@ -17,13 +19,15 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
+                   
+
                     @foreach (var Animal in Model)
                         {
+                    totalPrice += @Animal.amount * @Animal.price;
                     <tr>
                         <td class="col-sm-8 col-md-6">
                         <div class="media">
@@ -33,10 +37,9 @@
                             </div>
                         </div></td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                        <input type="number" class="form-control" value="@Animal.amount">
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                        <td class="col-sm-1 col-md-1 text-center"><strong>$@Animal.price</strong></td>
                     </tr>
                         }
                     <tr>
@@ -44,16 +47,17 @@
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td class="text-right"><h3><strong>$@totalPrice</strong></h3></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td>
-                        <button type="button" class="btn btn-default empty-cart">
+
+                        <a href="/Home/EmptyCart"><button type="button" class="btn btn-default empty-cart">
                             <span class="glyphicon glyphicon-remove"></span> Empty Cart
-                        </button></td>
+                        </button></a></td>
                         <td>
                         <button type="button" class="btn btn-success">
                             Checkout <span class="glyphicon glyphicon-play"></span>
