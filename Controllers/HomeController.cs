@@ -122,5 +122,64 @@ namespace CShop.Controllers
             return guidCookie;
         }
 
+
+
+        [HttpGet]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public IActionResult Checkout(CheckoutModel checkout)
+        {
+            var guid = GetGuidCookie();
+
+            if (string.IsNullOrWhiteSpace(checkout.Email) || string.IsNullOrWhiteSpace(checkout.Address))
+            {
+                return View();
+            }
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                try 
+                {
+                    var total = connection.QuerySingleOrDefault<decimal>(
+                        "SELECT SUM(animals.price * cart.amount) AS total FROM cart, animals WHERE cart.guid=@guid AND cart.productId=animals.id", new { guid });
+
+                    var productInfo = connection.Query<AnimalModel>(
+                    "SELECT cart.*, animals.* FROM cart, animals WHERE cart.guid=@guid AND cart.productId=animals.id", new { guid }).ToList();
+
+                    connection.Execute(
+                        "INSERT INTO orders (guid, email, address, total) " +
+                        "VALUES (@guid, @email, @address, @total)", 
+                        new { guid, email = checkout.Email, address = checkout.Address, total }
+                );
+                    foreach (var product in productInfo)
+                    {
+                        
+                   
+                    connection.Execute(
+                        "INSERT INTO orderRows (guid, productName, productPrice) " +
+                        "VALUES (@guid, @productName, @productPrice)",
+                            new { guid, productName = product.name, productPrice = product.price }
+                                      );
+                    }
+                    connection.Execute(
+                        "DELETE FROM cart WHERE guid=@guid ", new { guid }
+                    );
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+
+            }
+
+            return View(checkout);
+        }
+
     }
 }
