@@ -1,4 +1,7 @@
-﻿@model AnimalModel
+﻿@using CShop.Models
+
+
+@model List<AnimalModel>
 
 @{
     ViewData["Title"] = "Animals";
@@ -6,21 +9,23 @@
 <h2>@ViewData["Title"]</h2>
 <h3>This is all of our animals for sale</h3>
 
-<div class="container">
-    <div class="row imagetiles">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <img src=https://thenypost.files.wordpress.com/2017/08/parrot.jpg?quality=90&strip=all class="img-responsive">
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <img src=https://i.scdn.co/image/2fd8fa0f7ef2f83691a0fb9628ee369b8e3b688e class="img-responsive">
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <img src=https://i.scdn.co/image/2fd8fa0f7ef2f83691a0fb9628ee369b8e3b688e class="img-responsive">
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-            <img src=https://i.scdn.co/image/2fd8fa0f7ef2f83691a0fb9628ee369b8e3b688e class="img-responsive">
-        </div>
-    </div>
-</div>
-
-<p>@Model.name</p>
+<div class="row">
+@foreach (var Animal in Model)
+{
+                <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" src=@Animal.img alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="#">@Animal.name</a>
+                  </h4>
+                  <h5>@Animal.price $</h5>
+                <div class="cart-button">
+                <a href="/Home/AddToCart/@Animal.id"><button type="button" class="btn btn-info">Add to cart</button></a>
+                </div>
+                </div>
+              </div>
+            </div>
+}
+  </div>  
+          

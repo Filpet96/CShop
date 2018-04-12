@@ -27,11 +27,11 @@ namespace CShop.Controllers
         public IActionResult Animals()
         {
             ViewData["Message"] = "Animals Page.";
-            AnimalModel animal;
+            List<AnimalModel> animal;
             using(var connection = new MySqlConnection(_connectionString))
             {
-                 animal = connection.QuerySingleOrDefault<AnimalModel>(
-                    "SELECT * FROM animals WHERE id = 1");
+                animal = connection.Query<AnimalModel>(
+                    "SELECT * FROM animals").ToList();
             }
 
             return View(animal);
@@ -44,9 +44,43 @@ namespace CShop.Controllers
             return View();
         }
 
+        public IActionResult Cart()
+        {
+            ViewData["Message"] = "My cart page.";
+
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public IActionResult AddToCart(int id)
+        {
+            var guid = GetGuidCookie();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                connection.Execute(
+                    "INSERT INTO cart (productId, amount, guid) VALUES (@id, 1, @guid)", new { id, guid }
+                );
+            }
+            return RedirectToAction("Animals");
+        }
+
+        public string GetGuidCookie()
+        {
+            string guidCookie = Request.Cookies["guid"];
+            if (guidCookie != null)
+                return guidCookie;
+
+            guidCookie = Guid.NewGuid().ToString();
+            Response.Cookies.Append("guid", guidCookie);
+
+            return guidCookie;
+        }
+
     }
 }
