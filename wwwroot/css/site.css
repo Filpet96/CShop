@@ -51,6 +51,10 @@ h5 {
 button {
    margin: 0 auto;
 }
+.empty-cart {
+    background: red;
+    color: white;
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

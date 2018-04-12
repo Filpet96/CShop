@@ -48,7 +48,19 @@ namespace CShop.Controllers
         {
             ViewData["Message"] = "My cart page.";
 
-            return View();
+            List<AnimalModel> products;
+
+            var guid = GetGuidCookie();
+
+            using (var connection = new MySqlConnection(_connectionString))
+            {
+                products = connection.Query<AnimalModel>(
+                    "SELECT cart.*, animals.* FROM cart, animals WHERE cart.guid=@guid AND cart.productId=animals.id", new { guid }).ToList();
+            }
+
+
+
+            return View(products);
         }
 
         public IActionResult Error()
