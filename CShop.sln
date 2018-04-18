@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShop", "CShop\CShop.csproj", "{CFC119F9-91C5-49D6-92D5-08F05E9FAD58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShop.Unittests", "CShop.Unittests\CShop.Unittests.csproj", "{C2B66193-819D-4A8D-91C8-9958C98E28A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CShop.Core", "CShop.Core\CShop.Core.csproj", "{F891AB22-32C2-4D0D-B89D-6860E86305FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFC119F9-91C5-49D6-92D5-08F05E9FAD58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC119F9-91C5-49D6-92D5-08F05E9FAD58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC119F9-91C5-49D6-92D5-08F05E9FAD58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC119F9-91C5-49D6-92D5-08F05E9FAD58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B66193-819D-4A8D-91C8-9958C98E28A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B66193-819D-4A8D-91C8-9958C98E28A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B66193-819D-4A8D-91C8-9958C98E28A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B66193-819D-4A8D-91C8-9958C98E28A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F891AB22-32C2-4D0D-B89D-6860E86305FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F891AB22-32C2-4D0D-B89D-6860E86305FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F891AB22-32C2-4D0D-B89D-6860E86305FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F891AB22-32C2-4D0D-B89D-6860E86305FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
