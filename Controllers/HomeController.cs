@@ -5,6 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CShop.Models;
+using CShop.Core.Models;
+using CShop.Core.Services;
+using CShop.Core.Services.Implementations;
+using CShop.Core.Repositories;
+using CShop.Core.Repositories.Implementations;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Dapper;
@@ -13,11 +18,14 @@ namespace CShop.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IProductService _productService;
+
         private readonly string _connectionString;
 
         public HomeController(IConfiguration config)
         {
             _connectionString = config.GetConnectionString("ConnectionString");
+            _productService = new ProductService(new ProductRepository(_connectionString));
         }
         public IActionResult Index()
         {
@@ -27,14 +35,8 @@ namespace CShop.Controllers
         public IActionResult Animals()
         {
             ViewData["Message"] = "Animals Page.";
-            List<AnimalModel> animal;
-            using(var connection = new MySqlConnection(_connectionString))
-            {
-                animal = connection.Query<AnimalModel>(
-                    "SELECT * FROM animals").ToList();
-            }
-
-            return View(animal);
+            
+            return View(_productService.GetAll());
         }
 
         public IActionResult Contact()

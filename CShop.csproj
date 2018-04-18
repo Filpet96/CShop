@@ -27,4 +27,7 @@
   <ItemGroup>
     <Content Remove="Views\Home\Contact.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CShop.Core\CShop.Core.csproj" />
+  </ItemGroup>
 </Project>

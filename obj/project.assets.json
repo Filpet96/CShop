@@ -4889,6 +4889,20 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "CShop.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "Dapper": "1.50.4",
+          "MySql.Data": "6.10.6"
+        },
+        "compile": {
+          "bin/placeholder/CShop.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CShop.Core.dll": {}
+        }
       }
     }
   },
@@ -12934,10 +12948,16 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "CShop.Core/1.0.0": {
+      "type": "project",
+      "path": "../CShop.Core/CShop.Core.csproj",
+      "msbuildProject": "../CShop.Core/CShop.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "CShop.Core >= 1.0.0",
       "Dapper >= 1.50.4",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -12972,7 +12992,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/filpet/Dropbox/CShop/CShop.Core/CShop.Core.csproj": {
+              "projectPath": "/Users/filpet/Dropbox/CShop/CShop.Core/CShop.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

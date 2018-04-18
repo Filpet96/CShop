@@ -9,3 +9,5 @@
 /Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.AssemblyInfo.cs
 /Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.dll
 /Users/filpet/Dropbox/CShop/CShop/obj/Debug/netcoreapp2.0/CShop.pdb
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.Core.dll
+/Users/filpet/Dropbox/CShop/CShop/bin/Debug/netcoreapp2.0/CShop.Core.pdb
