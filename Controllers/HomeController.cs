@@ -92,7 +92,7 @@ namespace CShop.Controllers
                         "UPDATE cart SET amount=amount+1 WHERE guid=@guid AND productId=@id", new { guid, id}
                     );
                 }
-                
+
 
             }
             return RedirectToAction("Animals");
@@ -144,7 +144,7 @@ namespace CShop.Controllers
 
             using (var connection = new MySqlConnection(_connectionString))
             {
-                try 
+                try
                 {
                     var total = connection.QuerySingleOrDefault<decimal>(
                         "SELECT SUM(animals.price * cart.amount) AS total FROM cart, animals WHERE cart.guid=@guid AND cart.productId=animals.id", new { guid });
@@ -154,13 +154,13 @@ namespace CShop.Controllers
 
                     connection.Execute(
                         "INSERT INTO orders (guid, email, address, total) " +
-                        "VALUES (@guid, @email, @address, @total)", 
+                        "VALUES (@guid, @email, @address, @total)",
                         new { guid, email = checkout.Email, address = checkout.Address, total }
                 );
                     foreach (var product in productInfo)
                     {
-                        
-                   
+
+
                     connection.Execute(
                         "INSERT INTO orderRows (guid, productName, productPrice) " +
                         "VALUES (@guid, @productName, @productPrice)",

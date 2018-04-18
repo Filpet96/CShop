@@ -19,6 +19,12 @@
     <Compile Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="CShop.Unitest" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\Contact.cshtml" />
   </ItemGroup>
 </Project>
