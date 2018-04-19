@@ -9,10 +9,12 @@
 @if (Model.displayCheckout == null)
 {
 <h2>@ViewData["Title"]</h2>
+<ul class="list-group">
 @foreach (var Animal in Model.AnimalList)
     {
-      <h1>@Animal.name</h1>
+      <li class="list-group-item">Amount: @Animal.amount <br> Product: @Animal.name</li>
     }
+    </ul>
 @using (Html.BeginForm("Checkout","Home"))
 {
 
