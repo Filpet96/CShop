@@ -35,7 +35,7 @@ namespace CShop.Controllers
         public IActionResult Animals()
         {
             ViewData["Message"] = "Animals Page.";
-            
+
             return View(_productService.GetAll());
         }
 
@@ -90,7 +90,7 @@ namespace CShop.Controllers
                     );
                 } else {
                     connection.Execute(
-
+                        // If product already exist update amount
                         "UPDATE cart SET amount=amount+1 WHERE guid=@guid AND productId=@id", new { guid, id}
                     );
                 }
@@ -129,17 +129,33 @@ namespace CShop.Controllers
         [HttpGet]
         public IActionResult Checkout()
         {
-            return View();
+          List<AnimalModel> products;
+
+          var guid = GetGuidCookie();
+
+          using (var connection = new MySqlConnection(_connectionString))
+          {
+              products = connection.Query<AnimalModel>(
+                  "SELECT cart.*, animals.* FROM cart, animals WHERE cart.guid=@guid AND cart.productId=animals.id", new { guid }).ToList();
+          }
+
+          var checkout = new CheckoutModelInfo
+          {
+          AnimalList = products,
+          displayCheckout = null,
+        };
+
+            return View(checkout);
         }
 
 
 
         [HttpPost]
-        public IActionResult Checkout(CheckoutModel checkout)
+        public IActionResult Checkout(CheckoutModelInfo checkout)
         {
             var guid = GetGuidCookie();
 
-            if (string.IsNullOrWhiteSpace(checkout.Email) || string.IsNullOrWhiteSpace(checkout.Address))
+            if (string.IsNullOrWhiteSpace(checkout.displayCheckout.Email) || string.IsNullOrWhiteSpace(checkout.displayCheckout.Address))
             {
                 return View();
             }
@@ -157,7 +173,7 @@ namespace CShop.Controllers
                     connection.Execute(
                         "INSERT INTO orders (guid, email, address, total) " +
                         "VALUES (@guid, @email, @address, @total)",
-                        new { guid, email = checkout.Email, address = checkout.Address, total }
+                        new { guid, email = checkout.displayCheckout.Email, address = checkout.displayCheckout.Address, total }
                 );
                     foreach (var product in productInfo)
                     {
@@ -180,7 +196,13 @@ namespace CShop.Controllers
 
             }
 
-            return View(checkout);
+            var vcheckout = new CheckoutModelInfo
+            {
+            AnimalList = null,
+            displayCheckout = checkout.displayCheckout,
+          };
+
+            return View(vcheckout);
         }
 
     }

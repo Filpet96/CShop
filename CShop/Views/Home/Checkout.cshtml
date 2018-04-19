@@ -1,33 +1,32 @@
-﻿@using CShop.Models
+﻿@using CShop.Core.Models
 
-
-@model CShop.Models.CheckoutModel
+@model CShop.Models.CheckoutModelInfo
 
 @{
     ViewData["Title"] = "Checkout";
 }
 
-@if (Model == null) 
+@if (Model.displayCheckout == null)
 {
 <h2>@ViewData["Title"]</h2>
-
-using (Html.BeginForm("Checkout","Home"))
+@foreach (var Animal in Model.AnimalList)
+    {
+      <h1>@Animal.name</h1>
+    }
+@using (Html.BeginForm("Checkout","Home"))
 {
 
   <div class="form-group">
-    @Html.LabelFor(m => m.Email)
-    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+    @Html.LabelFor(m => m.displayCheckout.Email)
+    @Html.TextBoxFor(m => m.displayCheckout.Email, new {@class = "form-control"})
   </div>
 
   <div class="form-group">
-    @Html.LabelFor(m => m.Address)
-    @Html.TextBoxFor(m => m.Address, new {@class = "form-control"})
+    @Html.LabelFor(m => m.displayCheckout.Address)
+    @Html.TextBoxFor(m => m.displayCheckout.Address, new {@class = "form-control"})
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
   }
 } else {
 <h2>Thank you for your order</h2>
 }
-
-
-          
